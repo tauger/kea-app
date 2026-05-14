@@ -28,7 +28,14 @@ You provide an email address, display name, and IMAP/SMTP server settings (auto-
 Kea downloads message headers, bodies, and attachments from your IMAP server and stores them locally in SwiftData. Sending mail goes through your SMTP server. No copies are sent anywhere else by Kea itself.
 
 ### Search indexes and embeddings
-Kea builds a local full-text search index (SQLite FTS5) and, optionally, vector embeddings for semantic search. By default these run on-device. If you have configured an embedding provider (Google `text-embedding-005`, OpenAI, Ollama, or Apple's internal Floodgate service), short text snippets from your messages are sent to that provider's API for embedding. Indexes are stored locally.
+Kea builds a local full-text search index (SQLite FTS5). For semantic search reranking, Kea also generates vector embeddings — but only when your configured LLM provider also supplies an embedding endpoint. Specifically:
+
+- **Apple Intelligence** or **Anthropic Claude** — no embeddings are generated; search uses local FTS5 only.
+- **OpenAI** (LLM provider) — embeddings via `text-embedding-3-small`; short message snippets are sent to OpenAI during background indexing.
+- **Google Gemini** (LLM provider) — embeddings via `text-embedding-005`; short message snippets are sent to Google during background indexing.
+- **Ollama** (local LLM) — embeddings via `nomic-embed-text` (default; configurable); both LLM and embedding traffic stay on your local Ollama instance.
+
+All resulting indexes are stored locally.
 
 ### AI-derived data
 When you enable a cloud AI provider and invoke a feature (summarization, smart reply, compose, triage, search re-ranking), the relevant message content and your prompt are sent to that provider's API. The result is stored locally. Cloud AI providers Kea supports include: Anthropic Claude, OpenAI, Google Gemini. Each provider's own privacy policy governs what they do with that data.
@@ -56,9 +63,11 @@ Kea may derive lightweight per-recipient and per-topic notes from your mail to i
 | Destination | What Kea sends | When |
 |-------------|---------------|------|
 | Your IMAP/SMTP servers | Whatever the protocol requires (auth, fetch, send) | Whenever you sync, send, or act on mail |
-| Anthropic / OpenAI / Google (cloud AI providers) | Email content + your prompt | Only if you have configured that provider's API key and invoked an AI feature |
+| Anthropic Claude | Email content + your prompt | Only if you have configured an Anthropic API key and invoked an AI feature. No embedding traffic. |
+| OpenAI | Email content + your prompt; short snippets for embeddings | Content on AI feature invocation; snippets continuously during background indexing |
+| Google Gemini | Email content + your prompt; short snippets for embeddings | Content on AI feature invocation; snippets continuously during background indexing |
 | Apple Intelligence | Prompts | On-device only — Apple's framework runs locally on supported devices |
-| Ollama (local LLM) | Email content + prompt | Only if you've pointed Kea at a local Ollama instance |
+| Ollama (local LLM) | Email content + prompt; embedding text | Only if you've pointed Kea at a local Ollama instance; stays on your machine |
 | Apple Floodgate | Embedding text | Apple-internal only; not present in App Store builds |
 | Anywhere else | Nothing | — |
 
