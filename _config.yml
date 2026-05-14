@@ -1,0 +1,19 @@
+title: Kea
+description: AI-native email client for macOS
+url: https://tauger.github.io
+baseurl: /kea-app
+
+theme: minima
+
+minima:
+  skin: auto
+
+header_pages:
+  - privacy.md
+
+# Exclude scaffolding files from the built site
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
