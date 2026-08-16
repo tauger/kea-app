@@ -3,11 +3,11 @@ layout: home
 title: Kea
 ---
 
-Kea is an AI-native email client written in Swift for Mac, iPhone, and iPad. It connects to your existing IMAP/SMTP accounts (iCloud, Gmail, Outlook, Fastmail, Yahoo, and custom providers) and adds AI-assisted reading, drafting, and search. Kea stores its mailbox cache and indexes locally and has no operated backend. If you configure a cloud AI provider, relevant content is sent directly to that provider; OpenAI and Gemini can also receive brief message snippets for search embeddings.
+Kea is an AI-native email client written in Swift for Mac, iPhone, and iPad. It connects to your existing IMAP/SMTP accounts (iCloud, Gmail, Outlook, Yahoo, and custom providers) and adds AI-assisted reading, drafting, and search. Kea stores its mailbox cache and indexes locally and has no operated backend. If you configure a cloud AI provider, relevant content is sent directly to that provider; OpenAI and Gemini can also receive brief message snippets for search embeddings.
 
 ## Features
 
-- Multi-account IMAP/SMTP mail for iCloud, Gmail, Outlook, Fastmail, Yahoo, and custom providers
+- Multi-account IMAP/SMTP mail for iCloud, Gmail, Outlook, Yahoo, and custom providers
 - Fast cached navigation, offline reading, full-text search, and on-device semantic ranking
 - Today's Attention Queue, email triage by intent, urgency, and category, and follow-up tracking
 - AI-assisted summaries, smart replies, and compose, with personal-document and email context
