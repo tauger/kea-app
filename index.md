@@ -7,14 +7,14 @@ Kea is an AI-native email client for macOS. It connects to your existing IMAP/SM
 
 ## Features
 
-- Standard IMAP/SMTP — works with any mainstream provider
-- On-device search (full-text + semantic ranking)
-- AI-assisted summaries, smart replies, and compose — opt-in, runs locally via Apple Intelligence by default
-- Optional cloud AI providers (Anthropic Claude, OpenAI, Google Gemini) — bring your own API key
-- Three-layer spam filtering — header heuristics + sender reputation + optional local LLM classifier
-- Email triage by intent / urgency / category
-- Threaded conversations with cross-folder enrichment
-- IDLE push for real-time new mail
+- Multi-account IMAP/SMTP mail for iCloud, Gmail, Outlook, Fastmail, Yahoo, and custom providers
+- Fast cached navigation, offline reading, full-text search, and on-device semantic ranking
+- Today attention queue, email triage by intent / urgency / category, and follow-up tracking
+- AI-assisted summaries, smart replies, and compose, with personal-document and email context
+- On-device Apple Intelligence support where available
+- Optional cloud AI providers (Anthropic Claude, OpenAI, Google Gemini) using your own API key
+- Threaded conversations with cross-folder enrichment and real-time IDLE synchronization
+- User-controlled Report Spam / Not Spam actions and deterministic bulk-mail separation
 
 ## System Requirements
 
